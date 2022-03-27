@@ -1,0 +1,27 @@
+{
+  "name": "RealtimeOrders",
+  "version": "1.0.0",
+  "description": "This is real time orders app",
+  "main": "index.js",
+  "author": "Tran Quoc Nguyen",
+  "scripts": {
+    "serve": "node server.js",
+    "dev": "nodemon server.js",
+    "development": "mix",
+    "watch": "mix watch",
+    "production": "mix --production"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.43",
+    "nodemon": "^2.0.15",
+    "resolve-url-loader": "5.0.0",
+    "sass": "^1.49.9",
+    "sass-loader": "12.1.0"
+  }
+}
