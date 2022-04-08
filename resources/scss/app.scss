@@ -1,6 +1,10 @@
 @import './variables';
-// @import '~noty/src/noty.scss';
-// @import '~noty/src/themes/mint.scss';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Lato', sans-serif;
@@ -77,7 +81,7 @@ a.link {
 
 section.status {
     background: $secondary;
-    min-height: calc(100vh - 86px);
+    min-height: calc(111vh - 86px);
 }
 .status-box {
     padding: 60px 0 0;
@@ -123,7 +127,7 @@ section.status {
 }
 
 .status-box ul li:nth-child(3) span:before {
-    content: '\f818';
+    content: '\f553';
 }
 
 .status-box ul li:nth-child(4) span:before {

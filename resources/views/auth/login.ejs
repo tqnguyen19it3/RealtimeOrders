@@ -1,13 +1,17 @@
 <section class="login flex justify-center pt-24">
     <div class="w-full max-w-xs">
         <form action="/login" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <% if(messages.error) { %>
+            <span class="text-center text-red-500 text-sm"><%= messages.error %></span>
+            <% } %>
+            <span id="capslock" style="display:none;" class="text-center text-red-500 text-sm">CẢNH BÁO! Capslock đang bật</span>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                     Email
                 </label>
                 <input name="email"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="username" type="email" placeholder="Enter your email">
+                    id="username" type="email" placeholder="Nhập Email">
             </div>
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -21,7 +25,7 @@
                 <button
                     class="btn-primary rounded-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
-                        Đăng nhập
+                        Login
                 </button>
                 <a class="inline-block align-baseline font-bold text-sm" href="/register">
                     Bạn chưa có tài khoản?
@@ -29,7 +33,28 @@
             </div>
         </form>
         <p class="text-center text-gray-500 text-xs">
-            &copy;2022 Tran Quoc Nguyen - NV Sports Football.
+            &copy;2022 Tran Quoc Nguyen - NH Sports Football.
         </p>
     </div>
+    <script>
+        var email = document.getElementById("username");
+        var pass = document.getElementById("password");
+        var text = document.getElementById("capslock");
+        email.addEventListener("keyup", function(event) {
+    
+        if (event.getModifierState("CapsLock")) {
+            text.style.display = "block";
+          } else {
+            text.style.display = "none"
+          }
+        });
+        pass.addEventListener("keyup", function(event) {
+    
+        if (event.getModifierState("CapsLock")) {
+            text.style.display = "block";
+          } else {
+            text.style.display = "none"
+          }
+        });
+    </script>
 </section>

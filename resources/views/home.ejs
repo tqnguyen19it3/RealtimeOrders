@@ -1,26 +1,28 @@
+
 <section class="hero py-14">
     <div class="container mx-auto flex items-center justify-between">
         <div class="w-1/2" style="margin-left: 60px;">
-            <h6 class="text-xl"><em>Shop đồ thể thao NV Sports Football</em></h6>
+            <h6 class="text-xl"><em>Shop đồ thể thao NH Sports Football</em></h6>
             <h1 class="text-3xl md:text-5xl font-bold">ALIVE AND KICKIN!</h1>
-            <button class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary">Đặt ngay</button>
+            <a class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary" href="#order-now">Đặt ngay</a>
         </div>
         <div class="w-1/2" style="margin-right: 40px;">
             <img src="/img/hero-01.png" alt="img">
         </div>
     </div>
 </section>
-<section class="menu container mx-auto py-8">
+<section class="menu container mx-auto py-8" style="margin-bottom: 50px;" id="order-now">
     <h1 class="text-3xl text-center font-bold mb-8">Tất cả mặt hàng</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
+        <% products.forEach(function(pro) { %>
         <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
+            <img class="h-40 mb-4 mx-auto" src="/img/<%= pro.image %>" alt="">
             <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
+                <h2 class="mb-4 text-lg"><%= pro.name %></h2>
+                <span class="size py-1 px-4 rounded-full uppercase text-xs"><%= pro.size %></span>
                 <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
+                    <span class="font-bold text-lg">₹<%= pro.price %></span>
+                    <button data-product="<%= JSON.stringify(pro) %>"
                         class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
                         <span>+</span>
                         <span class="ml-4">Thêm</span>
@@ -28,110 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTDza</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/mu.jpg %>" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg">Áo ManUTD</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">size nhỏ</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹35</span>
-                    <button
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Thêm</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <% }) %>
+
     </div>
 </section>

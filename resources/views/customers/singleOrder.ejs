@@ -1,0 +1,22 @@
+<section class="status">
+    <div class="container mx-auto">
+        <div class="status-box w-full lg:w-2/3 mx-auto">
+            <div class="flex items-center justify-between mb-12">
+                <h1 class="text-xl font-bold">Theo dõi tình trạng giao hàng</h1>
+                <h6 class="bg-white py-1 rounded-full px-4 text-green-600 text-xs"><b>Mã đơn hàng:</b> '<%=
+                    order._id %>'</h6>
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="order_placed"><span>Đã đặt hàng</span>
+                </li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="confirmed"><span>Xác nhận đơn hàng</span>
+                </li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="prepared"><span>Chuẩn bị hàng</span></li>
+                <li class="status_line text-sm md:text-xl pb-16" data-status="delivered"><span>Giao hàng </span>
+                </li>
+                <li class="status_line text-sm md:text-xl" data-status="completed"><span>Hoàn thành</span></li>
+            </ul>
+        </div>
+    </div>
+</section>

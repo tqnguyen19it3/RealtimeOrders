@@ -10,37 +10,37 @@
 [+] Cài đặt Laravel Mix
     - thiết lập js và scss
 [+] Cài đặt tailwind css
-[] Tạo Trang chủ bằng Html và Css
-[] Tạo trang Giỏ hàng
+[+] Tạo Trang chủ bằng Html và Css
+[+] Tạo trang Giỏ hàng
     - phần tóm tắt đơn hàng
     - phần giỏ hàng trống
-[] - di chuyển các routes đến files routes 
-[] - Tạo các Controllers
-[] Thêm vào chức năng giỏ hàng
-    [] Tìm nạp tất cả pizza từ db và hiển thị trên trang chủ
-    [] Tạo mô hình menu và đặt Dữ liệu giả
+[+] - di chuyển các routes đến files routes 
+[+] - Tạo các Controllers
+[+] Thêm vào chức năng giỏ hàng
+    [+] Tìm nạp tất cả product từ db và hiển thị trên trang chủ
+    [+] Tạo mô hình menu và đặt Dữ liệu giả
         - kết nối với mongo db
         - sử dụng connect-mongo cho cửa hàng phiên
             - dependancies
                 - mongoose, express-session, connect-mongo, dotenv
     - axios để gửi yêu cầu ajax
     - cài đặt thư viện thông báo npm i noty https://ned.im/noty/#/
-[] Tạo trang đăng nhập với routes
-[] Tạo trang đăng ký với routes
-[] Bản dựng đăng ký CRUD
+[+] Tạo trang đăng nhập với routes
+[+] Tạo trang đăng ký với routes
+[+] Bản dựng đăng ký CRUD
      - phụ thuộc express-flash express-session dotenv
      - bài báo mã trạng thái https://www.restapitutorial.com/httpstatuscodes.html
-[] Tạo thông tin đăng nhập bằng hộ chiếu
+[+] Tạo thông tin đăng nhập bằng passport
      - cài đặt hộ chiếu phụ thuộc passport-local express-session
-[] Tạo bộ điều khiển đơn hàng và liên kết nó trong server.js
-[] Tạo chế độ xem Đơn hàng với bảng cho khách hàng và quản trị viên
-[] Chức năng đặt hàng
-[] Hiển thị tất cả các đơn đặt hàng của tôi trên trang đơn đặt hàng của người quản lý
-[] Hiển thị đơn đặt hàng trên trang đơn đặt hàng của quản trị viên
-[] Thay đổi trạng thái đơn hàng
-[] Tạo đơn đặt hàng trang với trạng thái
-[] Trình theo dõi đơn hàng
-     [] Kết nối Socket
+[+] Tạo bộ điều khiển đơn hàng và liên kết nó trong server.js
+[+] Tạo chế độ xem Đơn hàng với bảng cho khách hàng và quản trị viên
+[+] Chức năng đặt hàng
+[+] Hiển thị tất cả các đơn đặt hàng của tôi trên trang đơn đặt hàng của người quản lý
+[+] Hiển thị đơn đặt hàng trên trang đơn đặt hàng của quản trị viên
+[+] Thay đổi trạng thái đơn hàng
+[+] Tạo đơn đặt hàng trang với trạng thái
+[+] Trình theo dõi đơn hàng
+     [+] Kết nối Socket
          - phụ thuộc socket.io
 [] Xây dựng dự án để triển khai
 [] Triển khai dự án trên máy chủ trực tiếp
