@@ -42,5 +42,7 @@
 [+] Trình theo dõi đơn hàng
      [+] Kết nối Socket
          - phụ thuộc socket.io
-[] Xây dựng dự án để triển khai
-[] Triển khai dự án trên máy chủ trực tiếp
+[+] Xây dựng dự án để triển khai
+[+] Triển khai dự án trên máy chủ trực tiếp
+
+ssh -i "testAws.pem" ubuntu@ec2-54-221-153-86.compute-1.amazonaws.com

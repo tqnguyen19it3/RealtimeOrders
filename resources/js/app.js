@@ -36,12 +36,54 @@ addToCart.forEach((btn) => {
 })
 
 // Remove alert message after 2 seconds
-const alertMsg = document.querySelector('#success-alert')
-if(alertMsg) {
+const alertMsgsc = document.querySelector('#success-alert')
+if(alertMsgsc) {
    setTimeout(() => {
-       alertMsg.remove()
+       alertMsgsc.remove()
    }, 2000)
 }
+const alertMsgerr = document.querySelector('#error-alert')
+if(alertMsgerr) {
+   setTimeout(() => {
+    alertMsgerr.remove()
+   }, 2000)
+}
+
+
+// Ajax call
+// const paymentForm = document.querySelector('#payment-form');
+// if(paymentForm){
+//     paymentForm.addEventListener('submit', (e) =>{
+//         e.preventDefault();
+//         let formData = new FormData(paymentForm);
+//         let formobject = {}
+//         for(let [key, value] of formData.entries ()){
+//           formobject[key] = value
+//         }
+//         axios.post('/orders', formobject).then((res) => {
+//             new Noty({
+//                 type: 'success',
+//                 timeout: 1000,
+//                 text: res.data.message,
+//                 progressBar: false,
+//             }).show();
+
+//             setTimeout(() => {
+//                 window.location.href = '/customer/orders'
+//             }, 2000);
+            
+//         }).catch((err) => {
+//             new Noty({
+//                 type: 'error',
+//                 timeout: 1000,
+//                 text: err.res.data.message,
+//                 progressBar: false,
+//             }).show();
+//         })
+//         console.log(formobject);
+//       })
+// }
+
 
 // Change order status
 let statuses = document.querySelectorAll('.status_line')
@@ -74,7 +116,6 @@ function updateStatus(order) {
 }
 updateStatus(order);
 
-// initStripe()
 
 // Socket
 let socket = io()

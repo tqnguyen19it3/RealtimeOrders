@@ -44,16 +44,16 @@ export function initAdmin(socket) {
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="order_placed"
                                     ${ order.status === 'order_placed' ? 'selected' : '' }>
-                                    Placed</option>
+                                    Đã đặt</option>
                                 <option value="confirmed" ${ order.status === 'confirmed' ? 'selected' : '' }>
-                                    Confirmed</option>
+                                    Đã xác nhận</option>
                                 <option value="prepared" ${ order.status === 'prepared' ? 'selected' : '' }>
-                                    Prepared</option>
+                                    Đã chuẩn bị</option>
                                 <option value="delivered" ${ order.status === 'delivered' ? 'selected' : '' }>
-                                    Delivered
+                                    Đã giao hàng
                                 </option>
                                 <option value="completed" ${ order.status === 'completed' ? 'selected' : '' }>
-                                    Completed
+                                    Đã hoàn thành
                                 </option>
                             </select>
                         </form>
@@ -69,6 +69,9 @@ export function initAdmin(socket) {
                 </td>
                 <td class="border px-4 py-2">
                     ${ moment(order.createdAt).format('hh:mm A') }
+                </td>
+                <td class="border px-4 py-2">
+                    ${ order.paymentStatus ? '<span class="bg-green-100 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Đã thanh toán</span>' : '<span class="bg-pink-100 text-pink-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-pink-200 dark:text-pink-900">Chưa thanh toán</span>' }
                 </td>
             </tr>
         `

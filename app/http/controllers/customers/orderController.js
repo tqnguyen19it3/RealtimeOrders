@@ -1,6 +1,7 @@
 const Order = require('../../../models/order')
 const moment = require('moment')
-// const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
+const { json } = require('express')
+
 function orderController () {
     return {
         store(req, res) {
@@ -20,47 +21,14 @@ function orderController () {
 
             order.save().then(result => {
                 Order.populate(result, { path: 'customerId' }, (err, placedOrder) => {
-                    // Stripe payment
-                    // if(paymentType === 'card') {
-                    //     stripe.charges.create({
-                    //         amount: req.session.cart.totalPrice  * 100,
-                    //         source: stripeToken,
-                    //         currency: 'inr',
-                    //         description: `Pizza order: ${placedOrder._id}`
-                    //     }).then(() => {
-                    //         placedOrder.paymentStatus = true
-                    //         placedOrder.paymentType = paymentType
-                    //         placedOrder.save().then((ord) => {
-                    //             // Emit
-                    //             const eventEmitter = req.app.get('eventEmitter')
-                    //             eventEmitter.emit('orderPlaced', ord)
-                    //             delete req.session.cart
-                    //             return res.json({ message : 'Payment successful, Order placed successfully' });
-                    //         }).catch((err) => {
-                    //             console.log(err)
-                    //         })
-
-                    //     }).catch((err) => {
-                    //         delete req.session.cart
-                    //         return res.json({ message : 'OrderPlaced but payment failed, You can pay at delivery time' });
-                    //     })
-                    // } else {
-                    //     delete req.session.cart
-                    //     return res.json({ message : 'Order placed succesfully' });
-                    // }
                     req.flash('success', 'Đặt hàng thành công!')
                     delete req.session.cart
                     // Emit
                     const eventEmitter = req.app.get('eventEmitter') 
-                    eventEmitter.emit('orderPlaced', result)
+                    eventEmitter.emit('orderPlaced', placedOrder)
                     return res.redirect('/customer/orders')
+                    // return res.json({message : 'Đặt hàng thành công!'})
                 })
-                // req.flash('success', 'Đặt hàng thành công!')
-                // delete req.session.cart
-                // // Emit
-                // const eventEmitter = req.app.get('eventEmitter') 
-                // eventEmitter.emit('orderPlaced', result)
-                // return res.redirect('/customer/orders')
             }).catch(err => {
                 req.flash('error', 'Có gì đó không ổn!')
                 return res.redirect('/cart')
