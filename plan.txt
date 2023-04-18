@@ -44,5 +44,15 @@
          - phụ thuộc socket.io
 [+] Xây dựng dự án để triển khai
 [+] Triển khai dự án trên máy chủ trực tiếp
+[+] Thay toán online
 
-ssh -i "testAws.pem" ubuntu@ec2-54-221-153-86.compute-1.amazonaws.com
+
+///////////////////////////
+[-] delete product (khi chưa có sẵn trường deleted {tức là trc khi thêm plugin}, Menu.find({deleted: true}))
+[-] giai quyet update status product (gần xong, cần đưa ra thông báo)
+[-] middlewares upload
+[-] hỏi hàm destroy .txt
+[-] hỏi axios (Update + SoftDelete)
+
+[-] giai quyet ckeditor (xử lý upload lưu trữ ảnh)
+[-] giai quyet pagination (dấu ...)

@@ -1,0 +1,138 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Update Product Form</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a class="dropdown-item" href="#">Settings 1</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form action="/admin/update-product/<%= product._id %>?_method=PUT" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <div class="item form-group">
+                                <!-- Product Name -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" name="productName" required="required" class="form-control" value="<%= product.name %>">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product Price -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Price <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="productPrice" required="required" class="form-control" value="<%= product.price %>">
+                                </div>
+                                <span style="color: green;">$</span>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product Count -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Count <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="number" min="0" required="required" name="productCount" class="form-control" value="<%= product.count %>">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 label-align">Product Image <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="file" name="productImage" class="form-control" style="border: none;"><br>
+                                    <img src="/uploads/products/<%= product.image %>" alt="IMG" height="100" width="100">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product size -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Size <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <% if(product.size === 'small') { %>
+                                            <label class="btn btn-secondary" data-toggle-class="btn-secondary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="small" class="join-btn" checked> &nbsp; Small &nbsp;
+                                            </label>
+                                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="medium" class="join-btn"> Medium
+                                            </label>
+                                            <label class="btn btn-success" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="large" class="join-btn"> Large
+                                            </label>
+                                        <% } else if(product.size === 'medium') { %> 
+                                            <label class="btn btn-secondary" data-toggle-class="btn-secondary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="small" class="join-btn"> &nbsp; Small &nbsp;
+                                            </label>
+                                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="medium" class="join-btn" checked> Medium
+                                            </label>
+                                            <label class="btn btn-success" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="large" class="join-btn"> Large
+                                            </label>
+                                        <% } else if(product.size === 'large') { %>
+                                            <label class="btn btn-secondary" data-toggle-class="btn-secondary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="small" class="join-btn"> &nbsp; Small &nbsp;
+                                            </label>
+                                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="medium" class="join-btn"> Medium
+                                            </label>
+                                            <label class="btn btn-success" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="productSize" value="large" class="join-btn" checked> Large
+                                            </label>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Status <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="btn-group" data-toggle="buttons" style="margin-top: 7px;">
+                                        <% if(product.status === 'show') { %>
+                                            Show:&nbsp;<input type="radio" class="flat" name="productStatus" value="show" checked="" />  &emsp;
+                                            Hide:&nbsp;<input type="radio" class="flat" name="productStatus" value="hide" />
+                                        <% } else { %>  
+                                            Show:&nbsp;<input type="radio" class="flat" name="productStatus" value="show" />  &emsp;
+                                            Hide:&nbsp;<input type="radio" class="flat" name="productStatus" value="hide" checked="" />
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field item form-group">
+                                <!-- Product description -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Description <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <textarea required="required" name="productDesc" class="form-control" rows="5"><%= product.description %></textarea>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 label-align">Product Content <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                  <textarea required="required" class="form-control" rows="10" id="editorUpdateProduct" name="productContent"><%= product.content %></textarea>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="item form-group text-center">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

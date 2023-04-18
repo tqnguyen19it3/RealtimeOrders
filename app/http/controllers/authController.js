@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 function authController() {
     const _getRedirectUrl = (req) => {
-        return req.user.role === 'admin' ? '/admin/orders' : '/'
+        return req.user.role === 'admin' ? '/admin/dashboard' : '/'
     }
     
     return {
@@ -49,7 +49,7 @@ function authController() {
                 return res.redirect('/register')
          }
 
-         // Check if email exists 
+         // kiem tra email ton tai
             User.exists({ email: email }, (err, result) => {
             if(result) {
                 req.flash('error', 'Email đã tồn tại')
@@ -61,7 +61,7 @@ function authController() {
 
          // Hash password 
             const hashedPassword = await bcrypt.hash(password, 10)
-         // Create a user 
+         // tao user
             const user = new User({
                 name,
                 email,

@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const ejs = require('ejs')
 const path = require('path')
+const fs = require('fs')
 const expressLayout = require('express-ejs-layouts')
 const PORT = process.env.PORT || 3330
 const mongoose = require('mongoose')
@@ -11,6 +12,8 @@ const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
 const Emitter = require('events')
+const methodOverride = require('method-override')
+
 
 // Database connection
 const url = process.env.CONNECTION_STRING;
@@ -23,15 +26,18 @@ const connection = mongoose.connection
       console.log("MongoDB connection failed:", err.message);
     });
 
+
 // Session store
 let mongoStore = new MongoDbStore({
     mongooseConnection: connection,
     collection: 'sessions'
 })
 
+
 // Event emitter
 const eventEmitter = new Emitter()
 app.set('eventEmitter', eventEmitter)
+
 
 // Session config
 app.use(session({
@@ -39,8 +45,9 @@ app.use(session({
     resave: false,
     store: mongoStore,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 giờ
 }))
+
 
 // Passport config
 const passportInit = require('./app/config/passport')
@@ -52,8 +59,13 @@ app.use(flash())
 
 //Assets
 app.use(express.static('public'))
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+
+//method override
+app.use(methodOverride('_method'))
+
 
 // Global middleware
 app.use((req, res, next) => {
@@ -62,9 +74,12 @@ app.use((req, res, next) => {
     next()
 })
 
+
 // set Template engine
 app.use(expressLayout)
 app.set('views', path.join(__dirname, '/resources/views'))
+app.set('layout', 'layout');
+app.set('layoutAdmin', 'admin/adminLayout');
 app.set('view engine', 'ejs')
 
 require('./routes/web')(app)
@@ -72,10 +87,12 @@ app.use((req, res) => {
     res.status(404).render('errors/404')
 })
 
+
 //check server start
 const server = app.listen(PORT , () => {
-    console.log(`Listening on port ${PORT}`)
+    console.log(`Listening on port ${PORT}`);
 })
+
 
 // Socket
 const io = require('socket.io')(server)

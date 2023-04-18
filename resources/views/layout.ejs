@@ -12,13 +12,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 <body>
-    <nav class="container mx-auto flex items-center justify-between py-4 px-8">
+    <nav class="menubarNav container mx-auto flex items-center justify-between py-4 px-8">
         <div>
             <a href="/"><img src="/img/logo-main.png" alt="logo"></a>
         </div>
         <div>
             <ul class="flex items-center">
                 <li class="ml-6"><a href="/">Trang chủ</a></li>
+                <% if(user && user.role.toString() === 'admin') { %>
+                    <li class="ml-6"><a href="/admin/orders">Trang quản lí</a></li>
+                    <li class="ml-6"><a href="/admin/dashboard">Trang dashboard</a></li>
+                <% } %>
                 <% if(user) { %>
                 <li class="ml-6"><a href="/customer/orders">Đơn đặt</a></li>
                 <li class="ml-6">

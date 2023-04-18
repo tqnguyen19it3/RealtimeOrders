@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 function init(passport) {
     passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
         // Login
-        // check if email exists
+        // kiem tra email ton tai
         const user = await User.findOne({ email: email })
         if(!user) {
             return done(null, false, { message: 'Email này chưa được đăng ký!' })

@@ -12,14 +12,14 @@ body {
     color: $dark;
 }
 
-nav li:last-child a {
+nav.menubarNav li:last-child a {
     background: $primary;
     &:hover {
         background: $primary-hover;
     }
 }
 
-nav li a {
+nav.menubarNav li a {
     transition: $smooth;
     &:hover {
         color: $primary;

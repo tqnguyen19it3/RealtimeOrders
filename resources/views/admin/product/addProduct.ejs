@@ -1,0 +1,124 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <% if(messages.success) { %>
+                    <div class="alert alert-success alert-dismissible " id="boxAlert" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Success!</strong> <%= messages.success %>
+                    </div>
+                <% }else if(messages.error){ %>
+                    <div class="alert alert-danger alert-dismissible " id="boxAlert" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Error!</strong> <%= messages.error %>
+                    </div>
+                <% } %>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Add Product Form</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a class="dropdown-item" href="#">Settings 1</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form action="/admin/save-product" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <div class="item form-group">
+                                <!-- Product Name -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" name="productName" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product Price -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Price <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" name="productPrice" required="required" class="form-control">
+                                </div>
+                                <span style="color: green;">$</span>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product Count -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Count <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="number" min="0" required="required" name="productCount" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 label-align">Product Image <span class="required">*</span></label>
+                                <input type="file" name="productImage" class="col-md-6 col-sm-6 form-control" style="border: none;" required>
+                            </div>
+                            <div class="item form-group">
+                                <!-- Product size -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Size <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-secondary" data-toggle-class="btn-secondary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="productSize" value="small" class="join-btn" required> &nbsp; Small &nbsp;
+                                        </label>
+                                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="productSize" value="medium" class="join-btn" required> Medium
+                                        </label>
+                                        <label class="btn btn-success" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="productSize" value="large" class="join-btn" required> Large
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Status <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <div class="btn-group" data-toggle="buttons" style="margin-top: 7px;">
+                                        Show:&nbsp;<input type="radio" class="flat" name="productStatus" value="show" checked="" />  &emsp;
+                                        Hide:&nbsp;<input type="radio" class="flat" name="productStatus" value="hide" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field item form-group">
+                                <!-- Product description -->
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Product Description <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <textarea required="required" name="productDesc" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 label-align">Product Content <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 ">
+                                  <textarea class="form-control" rows="10" cols="6" id="editorAddProduct" name="productContent" required="required" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="item form-group text-center">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

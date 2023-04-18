@@ -16,7 +16,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
         <% products.forEach(function(pro) { %>
         <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/<%= pro.image %>" alt="">
+            <img class="h-40 mb-4 mx-auto" src="/uploads/products/<%= pro.image %>" alt="">
             <div class="text-center">
                 <h2 class="mb-4 text-lg"><%= pro.name %></h2>
                 <span class="size py-1 px-4 rounded-full uppercase text-xs"><%= pro.size %></span>
@@ -31,6 +31,32 @@
             </div>
         </div>
         <% }) %>
-
     </div>
 </section>
+<nav aria-label="Page navigation example">
+    <ul class="list-style-none mb-12 flex justify-center">
+        <li>
+            <% if(hasPrevPage){ %>
+            <a class="relative block rounded bg-transparent px-5 py-3 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" style="color: #FE5F1E; font-weight: bold;" href="/?page=<%= prev %>#order-now"><%= offset %> &laquo;</a>
+            <% } %>
+        </li>
+        <% for(let i = 1; i <= pageTotal; i++){%>
+            <% if(i == currentPage){ %>
+                <li>
+                    <a class="relative block rounded bg-transparent px-5 py-3 text-lg transition-all duration-300  dark:text-white dark:hover:text-white" href="/?page=<%= i %>" style="background: #FE5F1E; color: white;"><%= i %></a>
+                </li>
+            <% }else{ %>
+                <li>
+                    <a class="relative block rounded bg-transparent px-5 py-3 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="/?page=<%= i %>#order-now"><%= i %></a>
+                </li>
+            <% } %>
+           
+        <% } %>
+        <% if(hasNextPage){ %>
+        <li>
+            <a class="relative block rounded bg-transparent px-5 py-3 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" style="color: #FE5F1E; font-weight: bold;" href="/?page=<%= next %>#order-now">&raquo;</a>
+        </li>
+        <% } %>
+    </ul>
+</nav>
+

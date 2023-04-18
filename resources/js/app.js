@@ -2,7 +2,7 @@ import axios from 'axios'
 import Noty from 'noty'
 import { initAdmin } from './admin'
 import moment from 'moment'
-// import { initStripe } from './stripe'
+
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
@@ -27,7 +27,6 @@ function updateCart(products) {
 }
 
 
-
 addToCart.forEach((btn) => {
    btn.addEventListener('click', (e) => {
        let products = JSON.parse(btn.dataset.product)
@@ -35,7 +34,7 @@ addToCart.forEach((btn) => {
    })
 })
 
-// Remove alert message after 2 seconds
+// Xóa alert message sau 2s
 const alertMsgsc = document.querySelector('#success-alert')
 if(alertMsgsc) {
    setTimeout(() => {
@@ -50,42 +49,7 @@ if(alertMsgerr) {
 }
 
 
-// Ajax call
-// const paymentForm = document.querySelector('#payment-form');
-// if(paymentForm){
-//     paymentForm.addEventListener('submit', (e) =>{
-//         e.preventDefault();
-//         let formData = new FormData(paymentForm);
-//         let formobject = {}
-//         for(let [key, value] of formData.entries ()){
-//           formobject[key] = value
-//         }
-//         axios.post('/orders', formobject).then((res) => {
-//             new Noty({
-//                 type: 'success',
-//                 timeout: 1000,
-//                 text: res.data.message,
-//                 progressBar: false,
-//             }).show();
-
-//             setTimeout(() => {
-//                 window.location.href = '/customer/orders'
-//             }, 2000);
-            
-//         }).catch((err) => {
-//             new Noty({
-//                 type: 'error',
-//                 timeout: 1000,
-//                 text: err.res.data.message,
-//                 progressBar: false,
-//             }).show();
-//         })
-//         console.log(formobject);
-//       })
-// }
-
-
-// Change order status
+// Thay đổi trạng thái đơn hàng
 let statuses = document.querySelectorAll('.status_line')
 let hiddenInput = document.querySelector('#hiddenInput')
 let order = hiddenInput ? hiddenInput.value : null
@@ -93,7 +57,7 @@ order = JSON.parse(order)
 let time = document.createElement('small')
 
 function updateStatus(order) {
-   statuses.forEach((status) => {   //remove active old order status front-end
+   statuses.forEach((status) => {   //loại bỏ giao diện người dùng trạng thái đơn đặt hàng cũ đang hoạt động
        status.classList.remove('step-completed') 
        status.classList.remove('current') 
    })
