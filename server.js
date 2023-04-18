@@ -57,6 +57,7 @@ app.use(passport.session())
 
 app.use(flash())
 
+
 //Assets
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
@@ -96,11 +97,19 @@ const server = app.listen(PORT , () => {
 
 // Socket
 const io = require('socket.io')(server)
+// var onlineUserCount = 0;
 io.on('connection', (socket) => {
+    
       // Join
     socket.on('join', (orderId) => {
+        // onlineUserCount++;
         socket.join(orderId)
+        // socket.broadcast({onlineUserCount:onlineUserCount})
+        // socket.on('disconnect', function(){
+        //     onlineUserCount--;
+        // })
     })
+    // console.log(onlineUserCount)
 })
 
 eventEmitter.on('orderUpdated', (data) => {
