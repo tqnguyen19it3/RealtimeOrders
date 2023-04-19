@@ -18,6 +18,7 @@ const upload = require('../app/http/middlewares/upload')
 const multipartMiddleware = multipart()
 
 function initRoutes(app) {
+    // // guest
     app.get('/', homeController().index)
     app.get('/login', guest, authController().login)
     app.post('/login', authController().postLogin)
@@ -28,6 +29,7 @@ function initRoutes(app) {
     app.get('/cart', cartController().index)
     app.post('/update-cart', cartController().update)
 
+
     // // Customer routes
     app.post('/orders', auth, orderController().store)
     app.get('/customer/orders', auth, orderController().index)
@@ -35,9 +37,16 @@ function initRoutes(app) {
     app.get('/customer/success', auth, orderController().success)
     app.get('/customer/cancel', auth, orderController().cancel)
 
+
     // // Admin routes
+        //dashboard
     app.get('/admin/dashboard', admin, adminController().index)
-    
+        //profile admin
+    app.get('/admin/admin-profile/:id', admin, adminController().adminProfile)
+        //account admin
+    app.get('/admin/admin-account/:id', admin, adminController().adminAccount)
+    app.put('/admin/change-admin-account/:id', admin, adminController().postChangeAdminAccount)
+        //products
     app.get('/admin/add-product', admin, productController().addProduct)
     app.post('/admin/save-product', admin, upload.single('productImage'), productController().saveProduct)
     app.get('/admin/all-product', admin, productController().allProduct)
@@ -48,32 +57,9 @@ function initRoutes(app) {
     app.get('/admin/trash-product', admin, productController().trashProduct)
     app.patch('/admin/restore-product/:id', admin, productController().restoreProduct)
     app.delete('/admin/delete-product/:id', admin, productController().destroyProduct)
-
-    //uploads img ckeditor
-    app.post('/admin/imgCKEditor-product-upload', admin, multipartMiddleware, (req, res)=>{
-        try {
-            fs.readFile(req.files.upload.path, function (err, data) {
-                var newPath = '../Realtime-NH-Sports-Football/public/uploads/products/IMG_CKEditor/' + Date.now() + req.files.upload.name ;
-                fs.writeFile(newPath, data, function (err) {
-                    if (err) console.log({err: err});
-                    else {
-                        console.log(req.files.upload.originalFilename);
-                     
-                        let fileName = req.files.upload.name;
-                        let url = '/IMG_CKEditor/' + fileName;                    
-                        let msg = 'Upload successfully';
-                        let funcNum = req.query.CKEditorFuncNum;
-                        console.log({url,msg,funcNum});
-                       
-                        res.status(201).send("<script>window.parent.CKEDITOR.tools.callFunction('"+funcNum+"','"+url+"','"+msg+"');</script>");
-                    }
-                });
-            });
-        } catch (error) {
-            console.log(error.message);
-        }
-    })
-
+        //uploads img ckeditor
+    app.post('/admin/imgCKEditor-product-upload', admin, multipartMiddleware, productController().imgCKEditor)
+        //order state
     app.get('/admin/orders', admin, AdminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
 }

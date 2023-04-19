@@ -51,7 +51,7 @@
                             <th class="column-title">Size</th>
                             <th class="column-title">Price</th>
                             <th class="column-title">Count</th>
-                            <th class="column-title">Deleted At</th>
+                            <th class="column-title">Status</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -68,17 +68,31 @@
                               <td class="a-center ">
                                 <input type="checkbox" class="flat" name="table_records">
                               </td>
-                              <td><%= pro.name %></td>
+                              <td>
+                                <%= pro.name %>
+                                <br />
+                                <small>Deleted at: <%= moment(pro.deletedAt).format('DD-MM-YYYY HH:mm A') %></small>
+                              </td>
                               <td><img class="h-40 mb-4 mx-auto" src="/uploads/products/<%= pro.image %>" width="70" height="70" alt="image product"></td>
                               <td><%= pro.size %></td>
                               <td><%= pro.price %> <span style="color: green;">$</span></td>
                               <td><%= pro.count %></td>
-                              <td><%= moment(pro.deletedAt).format('DD-MM-YYYY HH:mm A') %></td>
+                              <td>
+                                <% if(pro.status === 'show'){ %>
+                                  <label>
+                                    <input type="checkbox" class="js-switch" disabled="disabled" checked="checked" /> Show
+                                  </label>
+                                <% } else { %>
+                                  <label>
+                                    <input type="checkbox" class="js-switch" disabled="disabled" /> Hide 
+                                  </label>
+                                <% } %> 
+                              </td>
                               <td class=" last">
-                                  <a href="" class="btn-sm btn-app btn-info btn-restore-product" data-id="<%= pro._id %>">
+                                  <a href="" class="btn btn-info btn-sm btn-restore-product" data-id="<%= pro._id %>">
                                       <i class="fa fa-recycle"></i> <small>Restore</small>
-                                  </a>&nbsp<br><br>
-                                  <a href="" class="btn-sm btn-app btn-danger" data-toggle="modal" data-target="#modalDeleteProduct" data-id="<%= pro._id %>">
+                                  </a>
+                                  <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDeleteProduct" data-id="<%= pro._id %>">
                                       <i class="fa fa-remove"></i> <small>Delete</small>
                                   </a>
                               </td>

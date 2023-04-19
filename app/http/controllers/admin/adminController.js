@@ -4,40 +4,40 @@ const Order = require('../../../models/order');
 
 function adminController() {
     return {
-        index(req, res) {
-            User.count({}, function(err, userCount) {
-                if (err) {
-                    return res.status(400).json({
-                        err: 'Unable to get user count',
-                    });
-                } else {
-                    // console.log("Count :", userCount);
-                    Menu.count({}, function(err, productCount) {
-                        if (err) {
-                            return res.status(400).json({
-                                err: 'Unable to get product count',
-                            });
-                        } else {
-                            // console.log("Count :", productCount);
-                            Order.count({}, function(err, orderCount) {
-                                if (err) {
-                                    return res.status(400).json({
-                                        err: 'Unable to get order count',
-                                    });
-                                } else {
-                                    // console.log("Count :", orderCount);
-                                    const data = {productCount, orderCount, userCount}
-                                    return res.render('admin/dashboard/adminHome', { layout: 'admin/adminLayout', data });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
+        async index(req, res) {
+            try{
+                const [userCount, productCount, orderCount] = await Promise.all([User.count(), Menu.count(), Order.count()]);
+                return res.render('admin/dashboard/adminHome' , { layout: 'admin/adminLayout', userCount, productCount, orderCount });
+            } catch (error){
+                return res.status(400).json({
+                    failed: 'Unable to get count data',
+                    error: error
+                });
+            }
         },
-        // index(req, res) {
-        //     return res.render('admin/dashboard/adminHome' , { layout: 'admin/adminLayout' });
-        // }
+        async adminProfile(req, res) {
+            const admin = await User.findOne({ _id: req.params.id });
+            return res.render('admin/dashboard/adminProfile' , { layout: 'admin/adminLayout', admin });
+        },
+        async adminAccount(req, res) {
+            const admin = await User.findOne({ _id: req.params.id });
+            return res.render('admin/dashboard/adminAccount' , { layout: 'admin/adminLayout', admin });
+        },
+        postChangeAdminAccount(req, res) {
+            const admin = new User({
+                name: req.body.name,
+                email: req.body.email,
+            })
+            User.findOneAndUpdate({ _id: req.params.id }, admin)
+                .then(() => {
+                    req.flash('success', 'Update admin account successfully!');
+                    return res.redirect("back")
+                })
+                .catch(err => {
+                    req.flash('error', 'Something went wrong!');
+                    res.status(500).send(err);
+                });
+        },
     }
 }
 

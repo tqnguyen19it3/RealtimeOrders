@@ -1,0 +1,60 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 ">
+            <% if(messages.success) { %>
+              <div class="alert alert-success alert-dismissible " id="boxAlert" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong>Success!</strong> <%= messages.success %>
+              </div>
+          <% }else if(messages.error){ %>
+              <div class="alert alert-danger alert-dismissible " id="boxAlert" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong>Error!</strong> <%= messages.error %>
+              </div>
+          <% } %>
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Admin Account</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <br />
+                <form id="demo-form2" action="/admin/change-admin-account/<%= admin._id %>?_method=PUT" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+                  <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Service Name">Admin Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="text" value="<%= admin.name %>" name="name" minlength="5" required="required" class="form-control ">
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Email">Admin Email <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 ">
+                      <input type="email" value="<%= admin.email %>" name="email" required="required" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="ln_solid"></div>
+                  <div class="item form-group">
+                    <div class="col-md-6 col-sm-6 offset-md-3">
+                      <button type="submit" class="btn btn-success">Update Account</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

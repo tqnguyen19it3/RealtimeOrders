@@ -49,7 +49,6 @@
                           <th>Size</th>
                           <th>Price</th>
                           <th>Count</th>
-                          <th>Created At</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -57,24 +56,32 @@
                       <tbody>
                         <% products.forEach(function(pro) { %>
                         <tr>
-                          <td><%= pro.name %></td>
+                          <td>
+                            <%= pro.name %>
+                            <br />
+                            <small>Created at: <%= moment(pro.createdAt).format('DD-MM-YYYY HH:mm A') %></small>
+                          </td>
                           <td><img class="h-40 mb-4 mx-auto" src="/uploads/products/<%= pro.image %>" width="70" height="70" alt="image product"></td>
                           <td><%= pro.size %></td>
                           <td><%= pro.price %> <span style="color: green;">$</span></td>
                           <td><%= pro.count %></td>
-                          <td><%= moment(pro.createdAt).format('DD-MM-YYYY HH:mm A') %></td>
                           <td>
                             <% if(pro.status === 'show'){ %>
-                              <a href="" class="btn-update-status-product" data-state="<%= pro.status %>" data-id="<%= pro._id %>"><i class="fa fa-toggle-on" style="font-size: 20px; color: green;"> Show</i></a>
+                              <label>
+                                <input type="checkbox" class="js-switch" data-state="<%= pro.status %>" data-id="<%= pro._id %>" checked /> 
+                              </label>
                             <% } else { %>
-                              <a href="" class="btn-update-status-product" data-state="<%= pro.status %>" data-id="<%= pro._id %>"><i class="fa fa-toggle-off" style="font-size: 20px; color: grey;"> Hide</i></a>
+                              <!-- <a href="" class="btn-update-status-product" data-state="<%= pro.status %>" data-id="<%= pro._id %>"><i class="fa fa-toggle-off" style="font-size: 20px; color: grey;"> Hide</i></a> -->
+                              <label>
+                                <input type="checkbox" class="js-switch" data-state="<%= pro.status %>" data-id="<%= pro._id %>" />
+                              </label>
                             <% } %> 
                           </td>
                           <td class=" last">
-                            <a  href="/admin/edit-product/<%= pro._id %>" class="btn-sm btn-app btn-info">
+                            <a  href="/admin/edit-product/<%= pro._id %>" class="btn btn-info btn-sm">
                               <i class="fa fa-edit"></i> <small>Edit</small>
-                            </a>&nbsp<br>
-                            <a href="#" class="btn-sm btn-app btn-danger" data-toggle="modal" data-target="#modalSoftDelPro" data-id="<%= pro._id %>">
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalSoftDelPro" data-id="<%= pro._id %>">
                               <i class="fa fa-trash-o"></i> <small>Trash</small>
                             </a>
                           </td>
@@ -122,18 +129,19 @@
 <script>
   document.addEventListener('DOMContentLoaded', function(){
     var productId;
-    var btnUpdateStatusPro = $('.btn-update-status-product');
+    var btnUpdateStatusPro = $('.js-switch');
     var formUpdateStatusPro = document.forms["update-status-product-form"];
     var formSoftDelPro = document.forms["soft-delete-product-form"];
     var btnSoftDelPro = document.querySelector("#btn-soft-delete-product");
 
-    btnUpdateStatusPro.click(function(e){
+    btnUpdateStatusPro.change(function(e){
       e.preventDefault(); //bo hanh vi mac dinh cua the <a>
       var id = $(this).data('id');
       var state = $(this).data('state');
       // formUpdateStatusPro.action = '/admin/update-status-product/' + id + '?_method=PATCH'
       // formUpdateStatusPro.submit();
       updateStateProduct(id, state);
+      // location.reload();
     });
 
     function updateStateProduct(productID, state) {

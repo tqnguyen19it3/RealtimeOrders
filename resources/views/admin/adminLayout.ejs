@@ -19,6 +19,8 @@
     <link href="/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="/admin/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Switchery -->
+	<link href="/admin/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 	
     <!-- bootstrap-progressbar -->
     <link href="/admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
@@ -56,7 +58,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>TQNguyen</h2>
+                <h2>ADMINATOR</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -167,16 +169,15 @@
               <nav class="nav navbar-nav">
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/admin/production/images/img.jpg" alt="">John Doe
+                  <a href="" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src="/admin/production/images/img.jpg" alt="">ADMINATOR
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
+                    <a class="dropdown-item"  href="/admin/admin-profile/<%= user._id %>"> Profile</a>
+                      <a class="dropdown-item"  href="/admin/admin-account/<%= user._id %>">
+                        <span class="badge bg-red pull-right">Admin</span>
+                        <span>Account</span>
                       </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
                   <form id="logout" action="/logout" method="POST">
                     <a data-toggle="tooltip" data-placement="top" class="dropdown-item" title="Logout" onclick="document.getElementById('logout').submit()" href="#">
                       <i class="fa fa-sign-out pull-right"></i> Log Out
@@ -252,6 +253,8 @@
     <script src="/admin/vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
     <script src="/admin/vendors/skycons/skycons.js"></script>
+    <!-- Switchery -->
+    <script src="/admin/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Flot -->
     <script src="/admin/vendors/Flot/jquery.flot.js"></script>
     <script src="/admin/vendors/Flot/jquery.flot.pie.js"></script>

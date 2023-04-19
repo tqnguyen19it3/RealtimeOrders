@@ -54,5 +54,6 @@
 [-] hỏi hàm destroy .txt
 [-] hỏi axios (Update + SoftDelete)
 
-[-] giai quyet ckeditor (xử lý upload lưu trữ ảnh)
+
+[-] giai quyet auth profile + account admin (thay doi params id user van vo dc)
 [-] giai quyet pagination (dấu ...)

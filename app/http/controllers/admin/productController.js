@@ -155,6 +155,27 @@ function productController() {
                 res.status(500).send(err);
             })
         },
+        imgCKEditor(req, res){
+            try {
+                fs.readFile(req.files.upload.path, function (err, data) {
+                    var newPath = path.join(__dirname, '../../../../public/uploads/products/IMG_CKEditor/' + req.files.upload.name);
+                    fs.writeFile(newPath, data, function (err) {
+                        if (err) console.log({err: err});
+                        else {
+                            let fileName = req.files.upload.name;
+                            let url = '/uploads/products/IMG_CKEditor/' + fileName;                    
+                            let msg = 'Upload successfully';
+                            let funcNum = req.query.CKEditorFuncNum;
+                            console.log({url,msg,funcNum});
+                           
+                            res.status(201).send("<script>window.parent.CKEDITOR.tools.callFunction('"+funcNum+"','"+url+"','"+msg+"');</script>");
+                        }
+                    });
+                });
+            } catch (error) {
+                console.log(error.message);
+            }
+        },
     }
 }
 
